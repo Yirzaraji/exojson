@@ -1,39 +1,91 @@
-fetch('joueurs.json')
+/* fetch('joueurs.json')
     .then(response => response.json())
 
 .then(data => {
-    //console.log(data)
-    const jsonResponse2 = document.getElementById('jsonLoader2');
-    const test2 = document.getElementById('test2');
 
-    /* jsonResponse2.innerHTML = '<br>' + data.nom + '</br>' + data.pseudo + '<br>' + data.xp;
-    test2.innerHTML = '<img src="' + data.urlavatar + '">'; */
+    const card = document.getElementsByClassName('cardTest')
+        for(let j = 0; j < card.length; j++){
+            console.log(card);
 
-    for (let i = 0; i < data.length; i++){
+                console.log(data)
+                
+                card[j].innerHTML = '<img src="' + data[j].urlavatar + '">' + data[j].nom 
+                + '<br>' + data[j].pseudo + '<br>' + data[j].xp;
+                
+            card[j].addEventListener("click", function(){
+                
+                card[j].classList.add('click');
 
-        console.log(data[i])
-        console.log(data[i].nom)
+                let clicked = document.getElementsByClassName('click')
+                if(clicked.length >= 2){
+                    console.log("coucoui")
 
-        //marche pas correctement
-        test2.innerHTML = data[i].nom
+                }
 
-        let newDiv = document.createElement("div");
-        newDiv.id = "div" + i;
-        newDiv.className = "card";
-        //console.log(newDiv.id)
+            });
 
-        newDiv.innerHTML = data[i].nom + '<br>' + data[i].pseudo + '<br>' + data[i].xp;
-        // et lui donne un peu de contenu
-        var newContent = document.createTextNode('');
-        // ajoute le nœud texte au nouveau div créé
-        newDiv.appendChild(newContent);
-        
-        // ajoute le nouvel élément créé et son contenu dans le DOM
-        var currentDiv = document.getElementById('div1');
-        document.body.insertBefore(newDiv, currentDiv);
-        
-    }
+            
+        }
 
 })
 
-.catch(error => console.error(error));
+.catch(error => console.error(error)); */
+
+
+
+
+$.ajax({
+    method: "GET",
+    url: "joueurs.json",
+    dataType: "json",
+
+    success: function() {
+        console.log("Ajax success");
+    },
+    error: function() {
+        alert("There was an error. Try again please!");
+    },
+})
+//.done est lié a jquery ref la doc
+.done(function(data) {
+    //console.log(data);
+    const card = document.getElementsByClassName('cardTest')
+        for(let j = 0; j < card.length; j++){
+            console.log(card);
+
+                console.log(data)
+                
+                card[j].innerHTML = '<img src="' + data[j].urlavatar + '">' + data[j].nom 
+                + '<br>' + data[j].pseudo + '<br>' + data[j].xp;
+                
+            card[j].addEventListener("click", function(){
+                
+                card[j].classList.add('click');
+
+                let clicked = document.getElementsByClassName('click')
+                if(clicked.length >= 2){
+                    console.log("coucoui")
+                    
+                    $.ajax({
+                        method: "GET",
+                        url: "/",
+                        dataType: "html",
+                        data:{
+                            "test": "resp"
+                        },
+                        
+                        success: function() {
+                            console.log("Ajax success");
+                        },
+                        error: function() {
+                            alert("There was an error. Try again please!");
+                        },
+                    })
+
+                }
+
+            });
+
+            
+        }
+});
