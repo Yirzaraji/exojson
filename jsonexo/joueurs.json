@@ -1,6 +1,12 @@
-{
+[{
     "nom": "Ashoka",
     "pseudo": "Tano",
     "xp": 2000,
     "urlavatar": "images/ahsoka.jpg"
-}
+},
+{
+    "nom": "Mace",
+    "pseudo": "Windo",
+    "xp": 2000,
+    "urlavatar": "images/mace.jpg"
+}]
